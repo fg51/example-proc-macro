@@ -3,7 +3,7 @@ name = "hello_macro"
 version = "0.0.0-develop"
 authors = ["kflange <zknsftk1msrk@gmail.com>"]
 edition = "2018"
-publish = false;
+publish = false
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
