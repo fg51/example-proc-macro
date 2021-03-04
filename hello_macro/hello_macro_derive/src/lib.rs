@@ -1,4 +1,5 @@
 use proc_macro::TokenStream;
+use proc_macro2::TokenStream as TokenStream2;
 
 // The "syn" crate parses Rust code from a string into a data structure that we can perform
 // operations on.
@@ -11,10 +12,15 @@ use quote::quote;
 // type.
 #[proc_macro_derive(HelloMacro)]
 pub fn hello_macro_derive(input: TokenStream) -> TokenStream {
-    let ast = syn::parse(input).unwrap_or_else(|e| panic!("{}", e)); // from input to ast.
+    let input = TokenStream2::from(input);
+
+    // from token to ast.
+    let ast = syn::parse2(input).unwrap_or_else(|e| panic!("{}", e));
 
     // Build the trait implementation.
-    impl_hello_macro(&ast)
+    let output = impl_hello_macro(&ast);
+
+    TokenStream::from(output)
 }
 
 fn impl_hello_macro(ast: &syn::DeriveInput) -> TokenStream {
