@@ -1,5 +1,5 @@
 [package]
-name = "example-proc-macro"
+name = "hello_macro_derive"
 version = "0.0.0-develop"
 authors = ["kflange <zknsftk1msrk@gmail.com>"]
 edition = "2018"
@@ -7,6 +7,10 @@ publish = false
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[lib]
+proc-macro = true
+
 [dependencies]
-hello_macro = { path = "./hello_macro" }
-hello_macro_derive = { path = "./hello_macro/hello_macro_derive" }
+proc-macro2 = "1"
+syn = "1"
+quote = "1"
